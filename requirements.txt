@@ -1,0 +1,8 @@
+autopep8
+jupyter
+keras
+matplotlib
+# newer version of numpy works but leaves an annoying error message at runtime
+numpy==1.13.0
+pylint
+tensorflow
