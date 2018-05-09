@@ -39,7 +39,9 @@ from keras import models
 
 model = models.Sequential()
 model.add(layers.Dense(16, activation='relu', input_shape=(10000,)))
+model.add(layers.Dropout(0.3))
 model.add(layers.Dense(16, activation='relu'))
+model.add(layers.Dropout(0.3))
 model.add(layers.Dense(1, activation='sigmoid'))
 
 model.compile(optimizer='rmsprop',
@@ -52,9 +54,11 @@ partial_x_train = x_train[10000:]
 y_val = y_train[:10000]
 partial_y_train = y_train[10000:]
 
+model.summary()
+
 history = model.fit(partial_x_train,
                     partial_y_train,
-                    epochs=4,
+                    epochs=5,
                     batch_size=512,
                     validation_data=(x_val, y_val))
 

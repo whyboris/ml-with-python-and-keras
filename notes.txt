@@ -4,10 +4,11 @@ alias py="python3"
 
 py -m venv venv
 
-source venv/bin/activate
+source venv/bin/activate (mac)
+venv/Scripts/activate.bat (PC)
 
 pip install -r requirements.txt
 
-jupyter notebook 
+jupyter notebook
 
 jupyter lab
