@@ -1,4 +1,5 @@
 autopep8
+cv2
 jupyter
 keras
 matplotlib
