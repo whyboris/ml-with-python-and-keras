@@ -4,3 +4,4 @@ __pycache__
 output
 venv
 *.h5
+logs

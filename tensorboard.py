@@ -25,6 +25,21 @@ model.add(layers.Dense(1))
 
 model.summary()
 
-model.compile(optimiser='rmsprop', loss='binary_crossentropy', metrics=['acc'])
+model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['acc'])
+
+callbacks = [
+  keras.callbacks.TensorBoard(
+    log_dir = './logs',
+    histogram_freq=1,
+    embeddings_freq=1,
+  )  
+]
+
+history = model.fit(x_train, y_train, 
+                    epochs=20,
+                    batch_size=128,
+                    validation_split=0.2,
+                    callbacks=callbacks)
+
 
 

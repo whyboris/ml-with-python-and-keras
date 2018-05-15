@@ -7,3 +7,5 @@ numpy==1.13.0
 opencv-python
 pylint
 tensorflow
+# html5lib newer version needed to get tensorboard to work
+html5lib==1.0.1

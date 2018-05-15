@@ -11,3 +11,7 @@ pip install -r requirements.txt
 jupyter notebook 
 
 jupyter lab
+
+tensorboard --logdir=logs
+http://localhost:6006/
+
