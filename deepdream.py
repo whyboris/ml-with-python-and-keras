@@ -70,7 +70,7 @@ for layer_name in layer_contributions:
     activation = layer_dict[layer_name].output
 
     scaling = K.prod(K.cast(K.shape(activation), 'float32'))
-    loss += coeff * K.sum(K.square(activation[:, 2: -2, 2: -2, :])) / scaling
+    loss = loss + coeff * K.sum(K.square(activation[:, 2: -2, 2: -2, :])) / scaling
 
 dream = model.input
 
@@ -106,7 +106,7 @@ iterations = 20
 
 max_loss = 10.
 
-base_img_path = '../heatmap.jpg'
+base_img_path = '../bunny.jpg'
 
 img = preprocess_image(base_img_path)
 
@@ -139,8 +139,8 @@ for shape in successive_shapes:
 
     shrunk_original_image = resize_img(original_image, shape)
 
-    save_img(img, fname='dream_at_scale_' + str(shape) + '.png')
+    save_img(img, fname='../dream_at_scale_' + str(shape) + '.png')
 
 
-save_img(img, fname='final_dream.png')
+save_img(img, fname='../final_dream.png')
 
