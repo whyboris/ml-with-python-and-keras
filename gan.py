@@ -63,8 +63,8 @@ discriminator.compile(optimizer=discriminator_optimizer, loss='binary_crossentro
 
 discriminator.trainable = False
 
-gan_input = keras.Input(shape=(latent_dim,)) 
-gan_output = discriminator(generator(gan_input)) 
+gan_input = keras.Input(shape=(latent_dim,))
+gan_output = discriminator(generator(gan_input))
 gan = keras.models.Model(gan_input, gan_output)
 
 gan_optimizer = keras.optimizers.RMSprop(lr=0.0004, clipvalue=1.0, decay=1e-8)
@@ -92,7 +92,7 @@ for step in range(iterations):
     random_latent_vectors = np.random.normal(size=(batch_size, latent_dim))
 
     generated_images = generator.predict(random_latent_vectors)
-    
+
     stop = start + batch_size
     real_images = x_train[start: stop]
     combined_images = np.concatenate([generated_images, real_images])

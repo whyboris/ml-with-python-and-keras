@@ -7,5 +7,9 @@ numpy==1.13.0
 opencv-python
 pylint
 tensorflow
+# get that GPU speed!
+tensorflow-gpu
 # html5lib newer version needed to get tensorboard to work
 html5lib==1.0.1
+# required for PIL -- image manipulation, at least in gan.py
+pillow
