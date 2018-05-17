@@ -1,4 +1,5 @@
 print('Variational AutoEncoders - VAE!')
+print('this will take 20+ minutes')
 
 from hack import hack
 hack()
