@@ -7,7 +7,9 @@ titanic_path = '../titanic/data.csv'
 dataset = pd.read_csv(titanic_path, quotechar='"')
 
 # cleaned data set looks like this (first seven rows):
-print(dataset.iloc[0:7, 0:10])
+# print(dataset.iloc[0:7, 0:10])
+# print(dataset.head(7))
+# print(dataset.tail(7))
 
 from keras.utils.np_utils import to_categorical
 
@@ -65,27 +67,43 @@ train_data = []
 
 # create tensor
 for i in range(0, 5):
-  train_data.append(np.array([pclass[i], sex[i], parch[i], cabin[i], embarked[i], fare[i], age[i], sib_sp[i]]))
+  # train_data = np.append(train_data, np.array([pclass[i], sex[i], parch[i], cabin[i], embarked[i], fare[i], age[i], sib_sp[i]]), axis=0)
+  train_data.append(np.array([
+                              pclass[i], 
+                              sex[i], 
+                              parch[i], 
+                              cabin[i], 
+                              embarked[i], 
+                              np.array(fare[i]), 
+                              np.array(age[i]), 
+                              np.array(sib_sp[i])
+                            ]))
+
+
+train_data = np.array(train_data).reshape(5, 8)
 
 
 print('shape is:')
+print(train_data.shape)
 print(train_data[1].shape)
+print(train_data[2].shape)
+print(train_data[3].shape)
 
 print(train_data)
 
 from keras import models
 from keras import layers
 
-# model = models.Sequential()
-# model.add(layers.Dense(64, activation='relu', input_shape=(train_data[1].shape,)))
-# model.add(layers.Dense(64, activation='relu'))
-# model.add(layers.Dense(1))
-# model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
+model = models.Sequential()
+model.add(layers.Dense(64, activation='relu', input_shape=(5,8)))
+model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(1))
+model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
 
-# model.fit(train_data, survived,
-#           epochs=80, batch_size=16, verbose=0)
+model.fit(train_data, survived,
+          epochs=80, batch_size=1, verbose=0)
 
-# test_mse_score, test_mae_score = model.evaluate(train_data, survived)
+test_mse_score, test_mae_score = model.evaluate(train_data, survived)
 
-# print('Mean attribute error: $', test_mae_score.round(3) * 1000)
+print('Mean attribute error: $', test_mae_score.round(3) * 1000)
 

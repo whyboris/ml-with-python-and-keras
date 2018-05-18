@@ -1,16 +1,22 @@
-autopep8
-jupyter
 keras
-matplotlib
-# newer version of numpy works but leaves an annoying error message at runtime
-numpy==1.13.0
-opencv-python
-pylint
 tensorflow
-pandas
 # get that GPU speed!
 # tensorflow-gpu
-# html5lib newer version needed to get tensorboard to work
+# newer version of numpy works but leaves an annoying error message at runtime
+numpy==1.13.0
+pandas
+
+# tools
+jupyterlab
+matplotlib
+
+# utils
+autopep8
+pylint
+# html5lib version 1.0.1 or newer to make tensorboard happy
 html5lib==1.0.1
+
+# Image libraries
+opencv-python
 # required for PIL -- image manipulation, at least in gan.py
 pillow
