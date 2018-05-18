@@ -19,7 +19,6 @@ validation_images = validation_images.astype('float32') / 255
 train_labels = to_categorical(train_labels)
 validation_labels = to_categorical(validation_labels)
 
-
 from keras import models
 from keras import layers
 
