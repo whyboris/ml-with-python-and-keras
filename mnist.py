@@ -9,6 +9,9 @@ from keras.datasets import mnist
 
 print(train_images.shape)
 
+print(train_labels.shape)
+print(train_labels)
+
 from keras import models
 from keras import layers
 

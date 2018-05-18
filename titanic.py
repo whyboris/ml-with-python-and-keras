@@ -65,45 +65,65 @@ import numpy as np
 
 train_data = []
 
+train_results = np.array(survived)
+
+train_results = train_results[:5]
+
 # create tensor
 for i in range(0, 5):
-  # train_data = np.append(train_data, np.array([pclass[i], sex[i], parch[i], cabin[i], embarked[i], fare[i], age[i], sib_sp[i]]), axis=0)
-  train_data.append(np.array([
-                              pclass[i], 
-                              sex[i], 
-                              parch[i], 
-                              cabin[i], 
-                              embarked[i], 
-                              np.array(fare[i]), 
-                              np.array(age[i]), 
-                              np.array(sib_sp[i])
-                            ]))
+    # train_data = np.append(train_data, np.array([pclass[i], sex[i], parch[i], cabin[i], embarked[i], fare[i], age[i], sib_sp[i]]), axis=0)
+    train_data.append(np.array([
+                                pclass[i], 
+                                sex[i], 
+                                parch[i], 
+                                cabin[i], 
+                                embarked[i], 
+                                np.array(fare[i]), 
+                                np.array(age[i]), 
+                                np.array(sib_sp[i])
+                              ]))
+    
+    # train_results.append(survived[i]))
+
 
 
 train_data = np.array(train_data).reshape(5, 8)
 
+print(np.array(train_results))
+print(np.array(train_results).shape)
+
+train_results = np.array(train_results)
+
+# print(train_results.shape)
 
 print('shape is:')
 print(train_data.shape)
+print('each row is shaped:')
 print(train_data[1].shape)
-print(train_data[2].shape)
-print(train_data[3].shape)
-
-print(train_data)
+print('example row looks like this:')
+print(train_data[1])
 
 from keras import models
 from keras import layers
 
 model = models.Sequential()
-model.add(layers.Dense(64, activation='relu', input_shape=(5,8)))
+model.add(layers.Dense(64, activation='relu', input_shape=(8,))) # input shape batch dimension should NOT be included
 model.add(layers.Dense(64, activation='relu'))
 model.add(layers.Dense(1))
-model.compile(optimizer='rmsprop', loss='mse', metrics=['mae'])
+model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])
 
-model.fit(train_data, survived,
-          epochs=80, batch_size=1, verbose=0)
+model.summary()
 
-test_mse_score, test_mae_score = model.evaluate(train_data, survived)
+#temp hack
+print('expected results:')
+print(train_results)
+print(train_results.shape)
 
-print('Mean attribute error: $', test_mae_score.round(3) * 1000)
+model.fit(train_data, train_results, epochs=5, batch_size=1)
+
+
+
+# test_mse_score, test_mae_score = model.evaluate(train_data, survived)
+
+# print('Mean attribute error: $', test_mae_score.round(3) * 1000)
 
