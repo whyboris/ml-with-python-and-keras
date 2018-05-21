@@ -16,3 +16,8 @@ jupyter lab
 tensorboard --logdir=logs
 http://localhost:6006/
 
+============================
+maybe:
+  if tensorboard complains
+pip install --upgrade bleach
+============================
