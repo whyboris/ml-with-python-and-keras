@@ -6,6 +6,8 @@ tensorflow
 numpy==1.13.0
 pandas
 
+scikit-learn
+
 # tools
 jupyterlab
 matplotlib
