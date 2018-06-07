@@ -102,7 +102,7 @@ survived = dataset['Survived'].tolist()
 import numpy as np
 
 # training set size !!!
-t_size = 600
+t_size = 700
 
 train_data = []
 
@@ -121,8 +121,8 @@ for i in range(0, t_size):
                                 parch[i], 
                                 cabin[i], 
                                 embarked[i], 
-                                np.array(fare[i]), 
-                                np.array(age[i]), 
+                                np.array(fare[i]*5), 
+                                np.array(age[i]*5), 
                                 np.array(sib_sp[i])
                               ]))
     
@@ -139,8 +139,8 @@ for i in range(t_size, len(dataset)):
                                 parch[i], 
                                 cabin[i], 
                                 embarked[i], 
-                                np.array(fare[i]), 
-                                np.array(age[i]), 
+                                np.array(fare[i]*5), 
+                                np.array(age[i]*5), 
                                 np.array(sib_sp[i])
                               ]))
 
@@ -170,9 +170,12 @@ from keras import models
 from keras import layers
 
 model = models.Sequential()
-model.add(layers.Dense(64, activation='relu', input_shape=(8,))) # input shape batch dimension should NOT be included
-model.add(layers.Dense(64, activation='relu'))
-model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(16, activation='relu', input_shape=(8,))) # input shape batch dimension should NOT be included
+model.add(layers.Dropout(0.1))
+model.add(layers.Dense(16, activation='relu'))
+model.add(layers.Dropout(0.1))
+model.add(layers.Dense(8, activation='relu'))
+model.add(layers.Dropout(0.1))
 model.add(layers.Dense(1))
 model.compile(optimizer='rmsprop', loss='binary_crossentropy', metrics=['accuracy'])
 
@@ -186,10 +189,17 @@ y_val = val_results
 # print(train_results)
 # print(train_results.shape)
 
-history = model.fit(train_data, train_results, 
-                    epochs=100, batch_size=t_size, 
-                    validation_data=(x_val, y_val))
+# print(train_data[0])
+# print(train_data[1])
+# print(train_data[2])
 
+# print(x_val[0])
+# print(x_val[1])
+# print(x_val[2])
+
+history = model.fit(train_data, train_results, 
+                    epochs=600, batch_size=t_size, 
+                    validation_data=(x_val, y_val))
 
 
 # test_mse_score, test_mae_score = model.evaluate(train_data, survived)
@@ -205,9 +215,12 @@ val_loss = history.history['val_loss']
 
 epochs = range(1, len(loss) + 1)
 
-plt.plot(epochs, loss, 'bo', label='Training loss')
-plt.plot(epochs, val_loss, 'b', label='Validation loss')
-plt.title('Training and validation loss')
+# don't pring out results of the first number epochs
+trim = 10
+
+plt.plot(epochs[trim:], loss[trim:], 'bo', label='Training loss')
+plt.plot(epochs[trim:], val_loss[trim:], 'b', label='Validation loss')
+plt.title('Titanic training and validation loss')
 plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.legend()
@@ -219,9 +232,9 @@ plt.clf()
 accuracy = history.history['acc']
 val_acc = history.history['val_acc']
 
-plt.plot(epochs, accuracy, 'bo', label='Accuracy')
-plt.plot(epochs, val_acc, 'b', label='Validation accuracy')
-plt.title('Training and validation accuracy')
+plt.plot(epochs[trim:], accuracy[trim:], 'bo', label='Accuracy')
+plt.plot(epochs[trim:], val_acc[trim:], 'b', label='Validation accuracy')
+plt.title('Titanic training and validation accuracy')
 plt.xlabel('Epochs')
 plt.ylabel('Accuracy')
 plt.legend()
