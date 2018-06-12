@@ -15,7 +15,6 @@ autopep8
 pylint
 # html5lib version 1.0.1 or newer to make tensorboard happy
 html5lib==1.0.1
-ipywidgets
 
 # Image libraries
 opencv-python
