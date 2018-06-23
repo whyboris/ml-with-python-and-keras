@@ -2,7 +2,7 @@ print('try the titanic Kaggle competition')
 
 import pandas as pd 
 
-titanic_path = '../titanic/data.csv'
+titanic_path = '../../titanic/data.csv'
 
 dataset = pd.read_csv(titanic_path, quotechar='"')
 
