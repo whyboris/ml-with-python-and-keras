@@ -215,7 +215,7 @@ val_loss = history.history['val_loss']
 
 epochs = range(1, len(loss) + 1)
 
-# don't pring out results of the first number epochs
+# don't print out results of the first number epochs
 trim = 10
 
 plt.plot(epochs[trim:], loss[trim:], 'bo', label='Training loss')
