@@ -6,15 +6,21 @@ tensorflow
 numpy==1.13.0
 pandas
 
+theano
+
+scikit-learn
+
 # tools
 jupyterlab
 matplotlib
+seaborn
 
 # utils
 autopep8
 pylint
 # html5lib version 1.0.1 or newer to make tensorboard happy
 html5lib==1.0.1
+pydot
 
 # Image libraries
 opencv-python
