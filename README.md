@@ -11,19 +11,38 @@ This repository is WIP. Feel free to reach out with questions via _Issues_
 
 ### How to get started
 
+Coding is likely less scary than you think. Getting everything above to work will just take some research and patience.
+
 Install requirements:
 
-1. Install Python 3.6+
-2. Install pip _(Pip Installs Python)_
-3. Install venv _(virtual environment)_
+0. Install [git](https://git-scm.com/downloads)
+    - this will allow you to copy all the code in this repository
+1. Install [Python 3.6+](https://www.python.org/downloads/)
+    - this will automatically install *pip* (_Pip Installs Python_ - a way to download [packages](https://pypi.org/))
+2. Install [virtualenv](https://virtualenv.pypa.io/en/latest/installation/)
+    - open your _terminal_ and run the command `pip install virtualenv` 
 
-Set up directory for work
+Open your terminal and enter these commands:
 
-1. `cd my-1337-ml-dir`
-2. `py -m venv venv` _(creates a `venv` folder inside your dir)_
-3. `source venv/bin activate`
-4. `pip install -r requirements.txt` _(place `requirements.txt` from this repository into the folder first)_
+0. `cd ~`
+    - this will navigate to your "home" directory
+    - please navigate using `cd` to a folder where you'd like to work
+        - perhaps create a folder called "code" 
+        - you can do that from the terminal with: `mkdir code` 
+1. `git clone https://github.com/whyboris/ml-with-python-and-keras.git`
+    - this will create a folder `ml-with-python-and-keras` inside the folder you are in
+2. `cd ml-with-python-and-keras`
+    - this will enter the folder
+3. `py -m venv venv`
+    - this will create  a `venv` folder inside your dir
+    - having a virtual environment allows packages you instal to not interfere with other packages in other projects
+4. `source venv/bin/activate`
+    - this will activate the environment, allowing you to 
+5. `pip install -r requirements.txt`
+    - This installs all the packages listed in `requirements.txt`
 
-Optional:
+As you code more and more, many actions become too repetitive, so you can create short versions of commands (called *alias*) to save yourself time (and the hassle of remembering some of the longer ones). These need to be saved in `.bashrc`, `.zshrc`, or somewhere else (depends on the terminal and settings you use).
 - `alias py="python3"`
+    - allows you to run scripts with `py script.py` rather than `python3 script.py`
 - `alias activate="source venv/bin/activate"`
+    - allows you to activate the environment with the command `activate` (see step 4 above).
