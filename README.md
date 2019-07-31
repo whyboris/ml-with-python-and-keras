@@ -33,8 +33,8 @@ Open your terminal and enter these commands:
     - this will create a folder `ml-with-python-and-keras` inside the folder you are in
 2. `cd ml-with-python-and-keras`
     - this will enter the folder
-3. `py -m venv venv`
-    - this will create  a `venv` folder inside your dir
+3. `virtualenv venv`
+    - this will create  a folder named "venv" inside your dir
     - having a virtual environment allows packages you instal to not interfere with other packages in other projects
 4. `source venv/bin/activate`
     - this will activate the environment, allowing you to 
