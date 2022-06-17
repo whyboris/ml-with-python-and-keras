@@ -3,7 +3,7 @@ tensorflow
 # get that GPU speed!
 # tensorflow-gpu
 # newer version of numpy works but leaves an annoying error message at runtime
-numpy==1.13.0
+numpy==1.21.0
 pandas
 
 theano
